@@ -73,10 +73,17 @@ spec:
   package: xpkg.upbound.io/upbound/provider-aws-ec2:v1
 ```
 
-### AWS Credentials
+### Crossplane secret with AWS Credentials
 
 ```txt
 [default]
 aws_access_key_id = <>
 aws_secret_access_key = <>
+```
+
+```bash
+kubectl create secret \
+generic aws-secret \
+-n crossplane-system \
+--from-file=creds=./aws-credentials.txt
 ```
