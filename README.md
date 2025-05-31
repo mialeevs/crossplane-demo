@@ -46,5 +46,5 @@ kubectl get po -n crossplane-system
 [Upbound Marketplace](https://marketplace.upbound.io/)
 
 ### AWS
-[Family](https://marketplace.upbound.io/providers/upbound/provider-family-aws/v1.22.0)
-[EC2](https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v1.22.0)
+- [Family](https://marketplace.upbound.io/providers/upbound/provider-family-aws/v1.22.0)
+- [EC2](https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v1.22.0)
