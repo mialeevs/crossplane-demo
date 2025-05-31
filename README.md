@@ -47,4 +47,36 @@ kubectl get po -n crossplane-system
 
 ### AWS
 - [Family](https://marketplace.upbound.io/providers/upbound/provider-family-aws/v1.22.0)
+
+```yaml
+# AWS Family Provider config
+
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-family-aws
+spec:
+  package: xpkg.upbound.io/upbound/provider-family-aws:v1
+```
+
+
 - [EC2](https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v1.22.0)
+
+```yaml
+# AWS EC2 provider
+
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-ec2
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-ec2:v1
+```
+
+### AWS Credentials
+
+```txt
+[default]
+aws_access_key_id = <>
+aws_secret_access_key = <>
+```
