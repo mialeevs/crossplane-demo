@@ -109,6 +109,8 @@ spec:
 kubectl apply -f aws-provider-config.yaml
 ```
 
+### AWS EC2 resource with Crossplane
+
 ```yaml
 # EC2 resource
 # Save as ec2-instance.yaml
@@ -129,4 +131,10 @@ kubectl apply -f ec2-instance.yaml
 
 # Get the resources
 kubectl get Instance -w
+```
+
+### Delete the Resource
+
+```bash
+kubectl delete Instance <resource_name>
 ```
