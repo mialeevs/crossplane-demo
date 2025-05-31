@@ -11,15 +11,18 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-### ADD HELM REPO FOR CROSSPLANE
+### ADD HELM REPO CHART FOR CROSSPLANE
 ```bash
+# Add the helm chart
 helm repo add \
 crossplane-stable https://charts.crossplane.io/stable
 
+# Update the repo
 helm repo update
 ```
 
 ```bash
+# Install crossplane
 helm install crossplane \
 crossplane-stable/crossplane \
 --namespace crossplane-system \
