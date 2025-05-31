@@ -6,6 +6,20 @@ For upto date information, check [crossplane.io](https://www.crossplane.io/)
 
 ### INSTALL HELM
 ```bash
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+### ADD HELM REPO FOR CROSSPLANE
+```bash
+helm repo add \
+crossplane-stable https://charts.crossplane.io/stable
+
+helm repo update
+```
+
+```bash
 helm install crossplane \
 crossplane-stable/crossplane \
 --namespace crossplane-system \
