@@ -50,7 +50,7 @@ kubectl get po -n crossplane-system
 
 ```yaml
 # AWS Family Provider config
-
+# Save the file as Save as aws-provider-family.yaml
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
@@ -64,7 +64,7 @@ spec:
 
 ```yaml
 # AWS EC2 provider
-
+# Save the file as Save as aws-provider-ec2.yaml
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
@@ -86,4 +86,39 @@ kubectl create secret \
 generic aws-secret \
 -n crossplane-system \
 --from-file=creds=./aws-credentials.txt
+```
+
+```yaml
+# ProviderConfig for connecting with AWS account
+# Save as aws-provider-config.yaml
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: aws-secret
+      key: creds
+```
+
+```bash
+# Apply the file
+kubectl apply -f aws-provider-config.yaml
+```
+
+```yaml
+# EC2 resource
+# Save as ec2-instance.yaml
+apiVersion: ec2.aws.upbound.io/v1beta2
+kind: Instance
+metadata:
+  name: sample-instance
+spec:
+  forProvider:
+    ami: ami-0953476d60561c955
+    instanceType: t2.micro
+    region: us-east-1
 ```
