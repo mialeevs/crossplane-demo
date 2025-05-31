@@ -2,7 +2,7 @@
 
 ## CROSSPLANE INSTALLATION
 
-crossplane.io(https://www.crossplane.io/)
+For upto date information, check [crossplane.io](https://www.crossplane.io/)
 
 ### INSTALL HELM
 ```bash
