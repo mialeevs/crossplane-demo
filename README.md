@@ -39,3 +39,9 @@ kubectl get po -n crossplane-system
 # crossplane-c55946f6d-lgt9b                                  1/1     Running   0          28m
 # crossplane-rbac-manager-d9dd6d76-l7ts4                      1/1     Running   0          28m
 ```
+
+## UPBOUND MARKETPLACE
+
+Crossplane and configurations details from [Upbound Marketplace](https://marketplace.upbound.io/)
+
+AWS - [Family](https://marketplace.upbound.io/providers/upbound/provider-family-aws/v1.22.0)
