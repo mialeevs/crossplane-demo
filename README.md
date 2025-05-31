@@ -122,3 +122,11 @@ spec:
     instanceType: t2.micro
     region: us-east-1
 ```
+
+```bash
+# Apply the file
+kubectl apply -f ec2-instance.yaml
+
+# Get the resources
+kubectl get Instance -w
+```
