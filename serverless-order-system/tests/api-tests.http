@@ -1,0 +1,106 @@
+### Serverless Order System API Tests
+### Install "REST Client" extension in VSCode to use this file
+
+# Variables - UPDATE THIS WITH YOUR API ENDPOINT
+@baseUrl = https://YOUR-API-GATEWAY-ID.execute-api.us-east-1.amazonaws.com
+@contentType = application/json
+
+### Health Check
+GET {{baseUrl}}/health
+Content-Type: {{contentType}}
+
+### Test 1: Create Low-Value Order (Standard Processing)
+# Expected: SNS notification only, no SQS queue
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-001",
+  "customer_id": "CUST-123",
+  "amount": 500
+}
+
+### Test 2: Create High-Value Order (Queued Processing)
+# Expected: SNS notification + SQS message + ECS processing
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-002",
+  "customer_id": "CUST-456",
+  "amount": 2500
+}
+
+### Test 3: Create Order at Threshold (Exactly $1000)
+# Expected: SNS notification + SQS message
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-003",
+  "customer_id": "CUST-789",
+  "amount": 1000
+}
+
+### Test 4: Order with Additional Fields
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-004",
+  "customer_id": "CUST-111",
+  "amount": 3500,
+  "product_id": "PROD-ABC",
+  "quantity": 5,
+  "notes": "Rush delivery requested"
+}
+
+### Test 5: Invalid Request - Missing Required Field
+# Expected: 400 Bad Request
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-005",
+  "amount": 1500
+}
+
+### Test 6: Invalid Request - Invalid JSON
+# Expected: 400 Bad Request
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-006",
+  "amount": "not a number"
+}
+
+### Test 7: Batch Test - Multiple Orders
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-100",
+  "customer_id": "CUST-BATCH-1",
+  "amount": 750
+}
+
+###
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-101",
+  "customer_id": "CUST-BATCH-2",
+  "amount": 1250
+}
+
+###
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+
+{
+  "order_id": "ORD-102",
+  "customer_id": "CUST-BATCH-3",
+  "amount": 5000
+}
